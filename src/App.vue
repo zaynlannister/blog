@@ -5,6 +5,7 @@
     />
     <post-list
       :posts="posts"
+      @remove="deletePost"
     />
   </div>
 </template>
@@ -24,16 +25,20 @@ export default {
       title: "",
       body: "",
       posts: [
-        {id: 1, title: 'murder in the store', body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
-        {id: 2, title: 'some theme', body: 'dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
-        {id: 3, title: 'new action', body: 'ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
+        {id: 1, title: "murder in the store", body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
+        {id: 2, title: "some theme", body: "dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
+        {id: 3, title: "new action", body: "ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
       ]
     }
   },
 
   methods: {
     createPost(post) {
-      this.posts.push(post)
+      this.posts.push(post);
+    },
+
+    deletePost(post) {
+      this.posts = this.posts.filter(item => item.id !== post.id);
     }
   }
 }

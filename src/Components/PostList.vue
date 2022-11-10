@@ -4,6 +4,7 @@
     <post-item
       v-for="post in posts"
       :post="post"
+      @remove="this.$emit('remove', post)"
     />
   </div>
 </template>

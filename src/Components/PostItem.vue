@@ -1,7 +1,10 @@
 <template>
   <div class="post">
-    <div><strong>Название:</strong> {{ post.title }}</div>
-    <div><strong>Содиржимое:</strong> {{ post.body }}</div>
+    <div>
+      <div><strong>Название:</strong> {{ post.title }}</div>
+      <div><strong>Содиржимое:</strong> {{ post.body }}</div>
+    </div>
+    <button @click="this.$emit('remove', post)" class="btn">Удалить</button>
   </div>
 </template>
 
@@ -14,5 +17,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 </style>
