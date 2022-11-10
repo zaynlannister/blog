@@ -1,15 +1,30 @@
 <template>
   <div class="app">
     <post-form/>
+    <post-list
+      :posts="posts"
+    />
   </div>
 </template>
 
 <script>
 import PostForm from "@/Components/PostForm.vue";
+import PostList from "@/Components/PostList.vue";
 
 export default {
   components: {
     PostForm,
+    PostList
+  },
+
+  data() {
+    return {
+      posts: [
+        {id: 1, title: 'murder in the store', body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
+        {id: 2, title: 'some theme', body: 'dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
+        {id: 3, title: 'new action', body: 'ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
+      ]
+    }
   }
 }
 </script>
@@ -45,5 +60,15 @@ export default {
       color: #ffff;
       background-color: #55a0ea;
     }
+  }
+
+  .post-list {
+    margin-top: 20px;
+  }
+
+  .post {
+    border: 1px solid #55a0ea;
+    padding: 10px 15px;
+    margin-bottom: 15px;
   }
 </style>
