@@ -1,8 +1,13 @@
 <template>
   <div class="app">
-    <post-form
-      @create="createPost"
-    />
+    <h3>Страница с постами</h3>
+    <button @click="showDialog" class="dialog__show-button btn">Создать пост</button>
+    <my-dialog v-model:show="dialogVisible">
+      <post-form
+          @create="createPost"
+      />
+    </my-dialog>
+
     <post-list
       :posts="posts"
       @remove="deletePost"
@@ -13,11 +18,13 @@
 <script>
 import PostForm from "@/Components/PostForm.vue";
 import PostList from "@/Components/PostList.vue";
+import MyDialog from "@/Components/UI/MyDialog.vue";
 
 export default {
   components: {
     PostForm,
-    PostList
+    PostList,
+    MyDialog
   },
 
   data() {
@@ -28,17 +35,23 @@ export default {
         {id: 1, title: "murder in the store", body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
         {id: 2, title: "some theme", body: "dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
         {id: 3, title: "new action", body: "ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
-      ]
+      ],
+      dialogVisible: false
     }
   },
 
   methods: {
     createPost(post) {
       this.posts.push(post);
+      this.dialogVisible = false;
     },
 
     deletePost(post) {
       this.posts = this.posts.filter(item => item.id !== post.id);
+    },
+
+    showDialog() {
+      this.dialogVisible = true;
     }
   }
 }
@@ -86,6 +99,10 @@ export default {
     border: 1px solid #55a0ea;
     padding: 10px 15px;
     margin-bottom: 15px;
+  }
+
+  .dialog__show-button {
+    margin: 15px 0;
   }
 
   @media (max-width: 1120px) {
