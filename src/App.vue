@@ -1,6 +1,8 @@
 <template>
   <div class="app">
-    <post-form/>
+    <post-form
+      @create="createPost"
+    />
     <post-list
       :posts="posts"
     />
@@ -19,11 +21,19 @@ export default {
 
   data() {
     return {
+      title: "",
+      body: "",
       posts: [
         {id: 1, title: 'murder in the store', body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
         {id: 2, title: 'some theme', body: 'dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
         {id: 3, title: 'new action', body: 'ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!'},
       ]
+    }
+  },
+
+  methods: {
+    createPost(post) {
+      this.posts.push(post)
     }
   }
 }

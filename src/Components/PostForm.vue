@@ -1,15 +1,33 @@
 <template>
   <h3>Создание поста</h3>
   <div class="action">
-    <input class="input" type="text" placeholder="введите заголовок">
-    <input class="input action-inp" type="text" placeholder="введите содержимое">
-    <button class="btn action-btn">Создать</button>
+    <input v-model="post.title" class="input" type="text" placeholder="введите заголовок">
+    <input v-model="post.body" class="input action-inp" type="text" placeholder="введите содержимое">
+    <button @click="createPost" class="btn action-btn">Создать</button>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      post: {
+        title: "",
+        body: ""
+      }
+    }
+  },
 
+  methods: {
+    createPost() {
+      this.$emit("create", this.post);
+
+      this.post = {
+        title: '',
+        body: ''
+      }
+    }
+  }
 }
 </script>
 
