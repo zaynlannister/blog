@@ -51,10 +51,6 @@ export default {
     padding: 0 20px;
   }
 
-  #app {
-    box-sizing: border-box;
-  }
-
   .input {
     outline: none;
     border: none;
