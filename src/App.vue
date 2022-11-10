@@ -11,7 +11,9 @@
     <post-list
       :posts="posts"
       @remove="deletePost"
+      v-if="!isPostLoading"
     />
+    <h3 v-else>Зашрузка данных...</h3>
   </div>
 </template>
 
@@ -31,12 +33,9 @@ export default {
     return {
       title: "",
       body: "",
-      posts: [
-        {id: 1, title: "murder in the store", body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
-        {id: 2, title: "some theme", body: "dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
-        {id: 3, title: "new action", body: "ipsum dolor sit amet, consectetur adipisicing elit. Ratione, veniam!"},
-      ],
-      dialogVisible: false
+      posts: [],
+      dialogVisible: false,
+      isPostLoading: false
     }
   },
 
@@ -52,7 +51,28 @@ export default {
 
     showDialog() {
       this.dialogVisible = true;
+    },
+
+    fetchPosts() {
+      let url = "https://jsonplaceholder.typicode.com/posts?_limit=10"
+
+      try {
+        this.isPostLoading = true;
+        fetch(url)
+            .then(response => response.json())
+            .then(response => {
+              this.posts= response;
+            })
+      } catch(error) {
+          alert("Ошибка загрузки постов")
+      } finally {
+          this.isPostLoading = false;
+      }
     }
+  },
+
+  mounted() {
+    this.fetchPosts();
   }
 }
 </script>
