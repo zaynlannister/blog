@@ -20,12 +20,18 @@ export default {
 
   methods: {
     createPost() {
-      this.post.id = Date.now();
-      this.$emit("create", this.post);
+      if (this.post.title.trim().length === 0 || this.post.body.trim().length === 0) {
+        alert('Ошибка')
+      } else {
+        console.log(this.post.title)
+        this.isDisabled = false;
+        this.post.id = Date.now();
+        this.$emit("create", this.post);
 
-      this.post = {
-        title: '',
-        body: ''
+        this.post = {
+          title: '',
+          body: ''
+        }
       }
     }
   }
