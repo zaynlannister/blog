@@ -87,4 +87,10 @@ export default {
     padding: 10px 15px;
     margin-bottom: 15px;
   }
+
+  @media (max-width: 1120px) {
+    .app {
+      width: unset;
+    }
+  }
 </style>
