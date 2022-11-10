@@ -48,6 +48,11 @@ export default {
   .app {
     width: 1120px;
     margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  #app {
+    box-sizing: border-box;
   }
 
   .input {
